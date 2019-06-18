@@ -3,14 +3,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = {
   mode: 'development',
-  target: 'web',
+  target: 'node',
   entry: {
-    app: path.join(__dirname, '../client/app.js')
+    app: path.join(__dirname, '../client/server.js')
   },
   output: {
-    filename: '[name].min.js',
+    filename: 'server.js',
     path: path.join(__dirname, '../dist'),
     publicPath: '/public/',
+    libraryTarget: 'commonjs2' // 最新commonjs规范
   },
   module: {
     rules: [{
@@ -29,14 +30,7 @@ const config = {
       //   presets: ['@babel/preset-env', '@babel/preset-react']
       // }
     }]
-  },
-  plugins: [
-      new HtmlWebpackPlugin({
-        inject: true,
-        template: path.join(__dirname, '../client/index.html'),
-      })
-  ]
-
+  }
 }
 
 module.exports = config
