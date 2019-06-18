@@ -16,7 +16,7 @@ app.get('*', function(req, res) {
   // 读入服务器端入口文件数据
   const appString = ReactSSR.renderToString(serverEntry)
   // 渲染服务器端数据到网页文件后，返回给客户端
-  res.send(template.replace("<app></app>", appString))
+  res.send(template.replace("<!-- app -->", appString))
 })
 
 // 监听3000端口

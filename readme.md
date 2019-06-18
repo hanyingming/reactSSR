@@ -36,6 +36,13 @@ webpack.client.js 配置 js、jsx相关loader： babel-loader。
 创建 webpack.server.js 服务器端配置文件输出服务器端渲染入口文件。
 安装express依赖 启动服务 渲染服务器端入口文件。
 
+### 4. 开发环境页面实时局部刷新
+ webpack dev server 更改数据，页面实时刷新
+ hot module replacement 更改数据，页面局部刷新
+ https://webpack.docschina.org/guides/hot-module-replacement
+
+ react-hot-loader: https://github.com/gaearon/react-hot-loader
+
 
 
 
