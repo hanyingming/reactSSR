@@ -19,7 +19,7 @@ export default class App extends React.Component {
     return (<div>
       <div>xxx022133</div>
       <div>xxx11</div>
-      hello react
+      hello react hello world!
       sdfsf ssr1111222sdfssfsdf!</div>)
   }
 

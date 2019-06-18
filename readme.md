@@ -54,6 +54,8 @@ react-hot-loader(react局部热更新的增强版，依赖hot-module-replacement
 1. React-Hot-Loader would not change the past, only update the present
 2. React-Hot-Loader would not update any object, including component state.
 
+### 5.服务器端实现热更新
+https://webpack.docschina.org/api/node/#%E5%AE%89%E8%A3%85-installation-
 
 
 
