@@ -43,6 +43,18 @@ webpack.client.js 配置 js、jsx相关loader： babel-loader。
 
  react-hot-loader: https://github.com/gaearon/react-hot-loader
 
+react-hot-loader(react局部热更新的增强版，依赖hot-module-replacement)
+配置步骤：
+安装 react-hot-loader依赖
+1. 配置.babelrc文件 plugins: react-hot-loader/babel
+2. 配置webpack.client.js文件 通过入口文件注入 react-hot-loader/patch; devServer 配置 hot: true
+3. App.js文件中引入react-hot-loader；通过 module.hot判断 热更新
+
+限制：
+1. React-Hot-Loader would not change the past, only update the present
+2. React-Hot-Loader would not update any object, including component state.
+
+
 
 
 

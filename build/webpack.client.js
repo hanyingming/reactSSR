@@ -38,12 +38,17 @@ const config = {
       new HtmlWebpackPlugin({
         inject: true,
         template: path.join(__dirname, '../client/index.html'),
-      }),
-      new webpack.HotModuleReplacementPlugin()
+      })
   ]
 }
 // 开发环境
 if (isDev) {
+  config.entry = {
+    app: [
+      'react-hot-loader/patch',
+      path.join(__dirname, '../client/app.js')
+    ]
+  }
   config.devServer = {
     host: '0.0.0.0',
     port: '8000',
@@ -58,6 +63,8 @@ if (isDev) {
       index: '/public/index.html'
     }
   }
+  // 配置模块热更新 HMR
+  config.plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 
 

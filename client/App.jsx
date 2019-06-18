@@ -12,13 +12,13 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    console.warn(333)
+    console.warn(33323)
   }
 
   render() {
     return (<div>
-      <div>xxx02133</div>
-      <div>xxx1</div>
+      <div>xxx022133</div>
+      <div>xxx11</div>
       hello react
       sdfsf ssr1111222sdfssfsdf!</div>)
   }
