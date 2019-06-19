@@ -54,8 +54,7 @@ if (isDev) {
     port: '8000',
     hot: true,
     contentBase: path.join(__dirname, '../dist'),
-    publicPath: '/public',
-    openPage: '/index.html',
+    publicPath: '/public/',
     overlay: {
       errors: true
     },

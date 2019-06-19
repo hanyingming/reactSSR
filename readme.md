@@ -56,6 +56,15 @@ react-hot-loader(react局部热更新的增强版，依赖hot-module-replacement
 
 ### 5.服务器端实现热更新
 https://webpack.docschina.org/api/node/#%E5%AE%89%E8%A3%85-installation-
+> 线上环境 express服务通过引入dist目录的服务入口文件server.js 与 html模板文件并进行整合返回给客户端。
+> 开发环境 需要通过axios获取客户端生成的模板文件，express服务器获取需要渲染的内容注入到模板文件的内容区域，返回给客户端。
+开发环境处理过程：
+  1. webpack-dev-server 启动客户端开发环境 npm run dev:client
+  2. 引入 axios 获取客户端的模板文件
+  3. 动态创建webpack 并 通过watch钩子监听打包过程；为了提升读写速度，webpack通过设置outputFileSystem: new MemoryFS() 将打包数据存储在内容中；
+  在打包过程监听回调函数中，读取打包数据并将数据动态挂载到module上（参考server.js）
+  4. 整合模板文件与渲染bundle内容 返回给客户端
+  5. 通过http-proxy-middle代理中间件 访问静态文件
 
 
 
