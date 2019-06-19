@@ -14,31 +14,38 @@ const config = {
   output: {
     filename: '[name].min.js',
     path: path.join(__dirname, '../dist'),
-    publicPath: '/public/',
+    publicPath: '/public/'
   },
   module: {
     rules: [{
+      enforce: 'pre',
+      test: /\.(js|jsx)$/,
+      loader: 'eslint-loader',
+      exclude: [
+        path.join(__dirname, '../node_modules')
+      ]
+    }, {
       test: /\.js/,
       loader: 'babel-loader',
       exclude: [
         path.join(__dirname, '../node_modules')
-      ],
-      // options: {
-      //   presets: ['@babel/preset-env', '@babel/preset-react']
-      // }
+      ]
+    // options: {
+    //   presets: ['@babel/preset-env', '@babel/preset-react']
+    // }
     }, {
       test: /\.jsx/,
-      loader: 'babel-loader',
-      // options: {
-      //   presets: ['@babel/preset-env', '@babel/preset-react']
-      // }
+      loader: 'babel-loader'
+    // options: {
+    //   presets: ['@babel/preset-env', '@babel/preset-react']
+    // }
     }]
   },
   plugins: [
-      new HtmlWebpackPlugin({
-        inject: true,
-        template: path.join(__dirname, '../client/index.html'),
-      })
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: path.join(__dirname, '../client/index.html')
+    })
   ]
 }
 // 开发环境
@@ -66,11 +73,9 @@ if (isDev) {
   config.plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 
-
 // 线上环境
 if (isProd) {
 
 }
-
 
 module.exports = config
