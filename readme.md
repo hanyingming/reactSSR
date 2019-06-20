@@ -16,7 +16,6 @@
 
 ## 项目创建
   npm init 生成package.json文件
-  .editorconfig
   .gitignore文件
 
 ### 1. webpack基础配置
@@ -65,6 +64,49 @@ https://webpack.docschina.org/api/node/#%E5%AE%89%E8%A3%85-installation-
   在打包过程监听回调函数中，读取打包数据并将数据动态挂载到module上（参考server.js）
   4. 整合模板文件与渲染bundle内容 返回给客户端
   5. 通过http-proxy-middle代理中间件 访问静态文件
+
+### 6. 配置 eslint、editorconfig 规范
+editorconfig: 规范不同编辑器的文本格式，维护一致的代码风格。（vscode:需要安装EditorConfig插件支持）
+eslint:语法规则和代码风格的检查工具
+用途：
+  1. 规范代码规则与风格，编译时实时进行代码检查
+  2. 与git 结合使用，git commit 时进行代码规范检查
+参考链接：
+https://www.npmjs.com/package/eslint-config-standard
+https://www.npmjs.com/package/eslint-config-airbnb
+https://juejin.im/post/5c92e11b5188251571729ef0
+https://webpack.docschina.org/guides/migrating/#%E7%A7%BB%E9%99%A4-module-preloaders-%E5%92%8C-module-postloaders
+
+安装依赖：
+  extends: "standard"
+    eslint-config-standard
+    eslint-plugin-node
+    eslint-plugin-promise
+    eslint-plugin-standard
+  extends: "airbnb"
+    eslint-config-airbnb@latest
+    eslint-plugin-jsx-a11y
+    eslint-plugin-import
+    eslint-plugin-react
+  eslint
+  babel-eslint
+  elint-loader
+
+eslint 常用配置项说明：
+  root 限定配置文件的使用范围
+  parser 指定eslint的解析器
+  parserOptions 设置解析器选项
+  extends 指定eslint规范
+  plugins 引用第三方的插件
+  env 指定代码运行的宿主环境
+  rules 启用额外的规则或覆盖默认的规则
+  globals 声明在代码中的自定义全局变量
+
+客户端：配置将 eslint 配置到 webpack 的工作流程中。
+服务器端：引入nodemon 启动服务 通过配置 监听文件改动时 执行 npm run server:eslint 进行检测 文件代码风格与语法规范。
+
+
+
 
 
 

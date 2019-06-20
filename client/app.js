@@ -1,9 +1,9 @@
-import React from 'react'
-import ReactDom from 'react-dom'
-import App from './App.jsx'
+import React from 'react';
+import ReactDom from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+import App from './App.jsx';
 
-const render = Component => {
+const render = (Component) => {
   ReactDom.hydrate(
     <AppContainer>
       <Component />
@@ -12,11 +12,11 @@ const render = Component => {
   );
 };
 
-render(App)
+render(App);
 // 局部刷新  HMR
 if (module.hot) {
-  module.hot.accept('./App.jsx', function() {
-    const NextApp = require('./App.jsx').default
-    render(NextApp)
+  module.hot.accept('./App.jsx', () => {
+    const NextApp = require('./App.jsx').default;
+    render(NextApp);
   });
 }

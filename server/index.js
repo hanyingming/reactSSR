@@ -16,9 +16,7 @@ if (!isDev) { // 生产环境
 } else { // 开发环境
   devServer(app, config)
 }
-
-
 // 监听3000端口
-app.listen(config.port, function() {
-  console.log("server is listening on 3000")
+app.listen(config.port, function () {
+  console.log('server is listening on 3000')
 })

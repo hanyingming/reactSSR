@@ -1,21 +1,21 @@
 const path = require('path')
 const webpack = require('webpack')
-const MemoryFS = require('memory-fs'); // 内存
+const MemoryFS = require('memory-fs') // 内存
 const ReactSSR = require('react-dom/server') // 服务器端渲染
 const axios = require('axios')
 const proxy = require('http-proxy-middleware') // http代理中间件
 
 // 服务器端webpack 配置；用于动态初始化webpack
-const serverConfig = require('../build/webpack.server.js');
+const serverConfig = require('../build/webpack.server.js')
 
 // 获取渲染模板; 需要启动 dev:client, 即 webpack-dev-server服务
 const getTemplate = (config) => {
   return new Promise((resolve, reject) => {
     axios.get(`http://${config.host}:${config.clientPort}${config.publicPath}index.html`)
-    .then(res => {
-      resolve(res.data)
-    })
-    .catch(reject)
+      .then(res => {
+        resolve(res.data)
+      })
+      .catch(reject)
   })
 }
 
@@ -29,7 +29,7 @@ const mfs = new MemoryFS()
 serverCompiler.outputFileSystem = mfs
 // 监听webpack 打包过程
 serverCompiler.watch({}, (err, stats) => {
-  if (err) throw err;
+  if (err) throw err
   stats = stats.toJson()
   // 打印error、warning 日志
   stats.errors.forEach(err => console.error(err))
@@ -45,19 +45,18 @@ serverCompiler.watch({}, (err, stats) => {
   serverBundle = m.exports.default
 })
 
-
-module.exports = function(app, config) {
-
+module.exports = function (app, config) {
   // 配置静态文件访问；通过代理中间件重定向访问地址
   app.use('/public', proxy({
     target: `http://${config.host}:${config.clientPort}`
   }))
 
-  app.get('*', function(req, res) {
+  app.get('*', function (req, res) {
+    console.warn(333)
     getTemplate(config).then(template => {
       // 获取渲染模板后整合渲染数据，返回给客户端
       const appString = ReactSSR.renderToString(serverBundle)
-      res.send(template.replace("<!-- app -->", appString))
+      res.send(template.replace('<!-- app -->', appString))
     })
   })
 }
