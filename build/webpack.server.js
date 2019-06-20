@@ -1,6 +1,8 @@
 const path = require('path')
+const webpackMerge = require('webpack-merge')
+const configBase = require('./webpack.base')
 
-const config = {
+const config = webpackMerge(configBase, {
   mode: 'development',
   target: 'node',
   entry: {
@@ -8,35 +10,8 @@ const config = {
   },
   output: {
     filename: 'server.js',
-    path: path.join(__dirname, '../dist'),
-    publicPath: '/public/',
     libraryTarget: 'commonjs2' // 最新commonjs规范
-  },
-  module: {
-    rules: [{
-      enforce: 'pre',
-      test: /\.(js|jsx)$/,
-      loader: 'eslint-loader',
-      exclude: [
-        path.join(__dirname, '../node_modules')
-      ]
-    }, {
-      test: /\.js/,
-      loader: 'babel-loader',
-      exclude: [
-        path.join(__dirname, '../node_modules')
-      ]
-      // options: {
-      //   presets: ['@babel/preset-env', '@babel/preset-react']
-      // }
-    }, {
-      test: /\.jsx/,
-      loader: 'babel-loader'
-      // options: {
-      //   presets: ['@babel/preset-env', '@babel/preset-react']
-      // }
-    }]
   }
-}
+})
 
 module.exports = config

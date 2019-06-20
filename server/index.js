@@ -1,4 +1,6 @@
 const express = require('express')
+const path = require('path')
+const favicon = require('serve-favicon')
 const devServer = require('./dev')
 const prodServer = require('./prod')
 
@@ -9,7 +11,11 @@ const config = {
   clientPort: 8000,
   publicPath: '/public/'
 }
+
 const app = express()
+
+// 配置网站icon图标
+app.use(favicon(path.join(__dirname, '../', 'favicon.ico')))
 
 if (!isDev) { // 生产环境
   prodServer(app)

@@ -1,5 +1,5 @@
 {
   "restartable": "rex",
-  "watch": ["./"],
+  "watch": ["./server/*"],
   "exec": "npm run server:eslint && node"
 }

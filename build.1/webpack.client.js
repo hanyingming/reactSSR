@@ -1,20 +1,45 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpackMerge = require('webpack-merge')
-const configBase = require('./webpack.base')
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = process.env.NODE_ENV === 'production'
 
-const config = webpackMerge(configBase, {
-  mode: 'development',
+const config = {
+  mode: 'none',
   target: 'web',
   entry: {
     app: path.join(__dirname, '../client/app.js')
   },
   output: {
     filename: '[name].min.js',
+    path: path.join(__dirname, '../dist'),
+    publicPath: '/public/'
+  },
+  module: {
+    rules: [{
+      enforce: 'pre',
+      test: /\.(js|jsx)$/,
+      loader: 'eslint-loader',
+      exclude: [
+        path.join(__dirname, '../node_modules')
+      ]
+    }, {
+      test: /\.js/,
+      loader: 'babel-loader',
+      exclude: [
+        path.join(__dirname, '../node_modules')
+      ]
+    // options: {
+    //   presets: ['@babel/preset-env', '@babel/preset-react']
+    // }
+    }, {
+      test: /\.jsx/,
+      loader: 'babel-loader'
+    // options: {
+    //   presets: ['@babel/preset-env', '@babel/preset-react']
+    // }
+    }]
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -22,8 +47,7 @@ const config = webpackMerge(configBase, {
       template: path.join(__dirname, '../client/index.html')
     })
   ]
-})
-
+}
 // 开发环境
 if (isDev) {
   config.entry = {

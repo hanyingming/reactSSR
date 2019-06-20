@@ -6,7 +6,7 @@
   "scripts": {
     "server:eslint": "eslint ./server",
     "dev:client": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.client.js",
-    "dev:server": "cross-env NODE_ENV=development nodemon --config ./server/nodemon.json ./server/index.js",
+    "dev:server": "cross-env NODE_ENV=development nodemon --config ./nodemon.json ./server/index.js",
     "build:client": "webpack --config ./build/webpack.client.js",
     "build:server": "webpack --config ./build/webpack.server.js",
     "clear": "rimraf dist",
@@ -43,13 +43,15 @@
     "rimraf": "^2.6.3",
     "webpack": "^4.34.0",
     "webpack-cli": "^3.3.4",
-    "webpack-dev-server": "^3.7.2"
+    "webpack-dev-server": "^3.7.2",
+    "webpack-merge": "^4.2.1"
   },
   "dependencies": {
     "axios": "^0.19.0",
     "express": "^4.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-hot-loader": "^4.11.1"
+    "react-hot-loader": "^4.11.1",
+    "serve-favicon": "^2.5.0"
   }
 }
