@@ -1,4 +1,6 @@
 import React from 'react';
+import BlogDetail from './blogDetail'
+import BlogList from './blogList'
 
 export default class App extends React.Component {
   // handleListener = () => {
@@ -16,8 +18,8 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <div>xxx0221331112</div>
-        <div>xxx1111</div>
+        <BlogList />
+        <BlogDetail />
         hello world!
       </div>
     );

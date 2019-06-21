@@ -7,7 +7,7 @@ const prodServer = require('./prod')
 const isDev = process.env.NODE_ENV === 'development'
 const config = {
   host: '127.0.0.1',
-  port: 3000,
+  port: 5000,
   clientPort: 8000,
   publicPath: '/public/'
 }
@@ -24,5 +24,5 @@ if (!isDev) { // 生产环境
 }
 // 监听3000端口
 app.listen(config.port, function () {
-  console.log('server is listening on 3000')
+  console.log(`server is listening on ${config.port}`)
 })

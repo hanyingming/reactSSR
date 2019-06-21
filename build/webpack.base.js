@@ -6,6 +6,9 @@ const config = {
     path: path.join(__dirname, '../dist'),
     publicPath: '/public/'
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [{
       enforce: 'pre',
@@ -30,9 +33,8 @@ const config = {
     //   presets: ['@babel/preset-env', '@babel/preset-react']
     // }
     }]
-  },
+  }
 
 }
-
 
 module.exports = config

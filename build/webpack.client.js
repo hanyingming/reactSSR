@@ -14,7 +14,7 @@ const config = webpackMerge(configBase, {
     app: path.join(__dirname, '../client/app.js')
   },
   output: {
-    filename: '[name].min.js',
+    filename: '[name].min.js'
   },
   plugins: [
     new HtmlWebpackPlugin({
