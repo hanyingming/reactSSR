@@ -1,7 +1,8 @@
-import React from 'react';
-import ReactDom from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import App from './view/App';
+import React from 'react'
+import ReactDom from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
+import App from './view/App'
+
 
 const render = (Component) => {
   ReactDom.hydrate(
