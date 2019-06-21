@@ -1,13 +1,20 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import BlogDetail from '../view/blogDetail'
-import BlogList from '../view/blogList'
+import { Switch, Route } from 'react-router-dom'
+import loadable from 'loadable-components'
+
+import Loading from '../components/loading'
+
+const BlogList = loadable(() => import('../view/blogList'), {
+  fallback: Loading,
+})
+
+const BlogDetail = loadable(() => import('../view/blogDetail'), {
+  fallback: Loading,
+})
 
 export default () => (
-  <Router>
-    <Switch>
-      <Route path="/" exact component={BlogList} />
-      <Route path="/detail" component={BlogDetail} />
-    </Switch>
-  </Router>
+  <Switch>
+    <Route path="/" exact component={BlogList} />
+    <Route path="/detail" component={BlogDetail} />
+  </Switch>
 )

@@ -4,11 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpackMerge = require('webpack-merge')
 const configBase = require('./webpack.base')
 
-const isDev = process.env.NODE_ENV === 'development'
 const isProd = process.env.NODE_ENV === 'production'
 
 const config = webpackMerge(configBase, {
-  mode: 'development',
+  mode: isProd ? 'production' : 'development',
   target: 'web',
   entry: {
     app: path.join(__dirname, '../client/app.js')
@@ -24,8 +23,10 @@ const config = webpackMerge(configBase, {
   ]
 })
 
+console.warn('isProd:', isProd)
+
 // 开发环境
-if (isDev) {
+if (!isProd) {
   config.entry = {
     app: [
       'react-hot-loader/patch',

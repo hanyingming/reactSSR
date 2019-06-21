@@ -105,6 +105,10 @@ eslint 常用配置项说明：
 客户端：配置将 eslint 配置到 webpack 的工作流程中。
 服务器端：引入nodemon 启动服务 通过配置 监听文件改动时 执行 npm run server:eslint 进行检测 文件代码风格与语法规范。
 
+### 7. 配置路由[react-router-dom](https://reacttraining.com/react-router/web/example/basic)
+1. 在client/view/config 目录创建route.jsx 路由配置文件
+2. 配置路由的代码分离（按需加载）
+
 
 
 

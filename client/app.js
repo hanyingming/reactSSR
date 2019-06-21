@@ -1,13 +1,16 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
+import { BrowserRouter } from 'react-router-dom'
 import App from './view/App'
 
 
 const render = (Component) => {
   ReactDom.hydrate(
     <AppContainer>
-      <Component />
+      <BrowserRouter>
+        <Component />
+      </BrowserRouter>
     </AppContainer>,
     document.getElementById('root'),
   );

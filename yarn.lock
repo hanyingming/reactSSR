@@ -295,7 +295,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
 
-"@babel/plugin-syntax-dynamic-import@^7.0.0":
+"@babel/plugin-syntax-dynamic-import@^7.2.0":
   version "7.2.0"
   resolved "https://registry.npm.taobao.org/@babel/plugin-syntax-dynamic-import/download/@babel/plugin-syntax-dynamic-import-7.2.0.tgz#69c159ffaf4998122161ad8ebc5e6d1f55df8612"
   integrity sha1-acFZ/69JmBIhYa2OvF5tH1XfhhI=
@@ -1151,6 +1151,11 @@ babel-loader@^8.0.0:
     loader-utils "^1.0.2"
     mkdirp "^0.5.1"
     pify "^4.0.1"
+
+babel-plugin-syntax-dynamic-import@^6.18.0:
+  version "6.18.0"
+  resolved "https://registry.npm.taobao.org/babel-plugin-syntax-dynamic-import/download/babel-plugin-syntax-dynamic-import-6.18.0.tgz#8d6a26229c83745a9982a441051572caa179b1da"
+  integrity sha1-jWomIpyDdFqZgqRBBRVyyqF5sdo=
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -3080,7 +3085,7 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0:
+hoist-non-react-statics@^3.0.1, hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0:
   version "3.3.0"
   resolved "https://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
   integrity sha1-sJF48BIhhPuVrPUl2q7LTY9FlYs=
@@ -3745,6 +3750,14 @@ load-json-file@^2.0.0:
     parse-json "^2.2.0"
     pify "^2.0.0"
     strip-bom "^3.0.0"
+
+loadable-components@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.npm.taobao.org/loadable-components/download/loadable-components-2.2.3.tgz#6fd1e02cc3716f6dbbd885a90d2bb36bf19cd7e1"
+  integrity sha1-b9HgLMNxb2272IWpDSuza/Gc1+E=
+  dependencies:
+    babel-plugin-syntax-dynamic-import "^6.18.0"
+    hoist-non-react-statics "^3.0.1"
 
 loader-fs-cache@^1.0.0:
   version "1.0.2"

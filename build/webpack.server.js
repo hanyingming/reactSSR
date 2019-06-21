@@ -2,8 +2,10 @@ const path = require('path')
 const webpackMerge = require('webpack-merge')
 const configBase = require('./webpack.base')
 
+const isProd = process.env.NODE_ENV === 'production'
+
 const config = webpackMerge(configBase, {
-  mode: 'development',
+  mode: isProd ? 'production' : 'development',
   target: 'node',
   entry: {
     app: path.join(__dirname, '../client/server.js')
