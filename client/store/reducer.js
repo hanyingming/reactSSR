@@ -3,6 +3,7 @@ const SUCCESS_REDUCER = 'successAction'
 const ERROR_REDUCER = 'errorAction'
 
 export default (state, action) => {
+  console.warn('action', action)
   if (action.type === LOAIDNG_REDUCER) {
     return {
       ...state,
@@ -25,6 +26,7 @@ export default (state, action) => {
       },
     }
   } if (action.type === ERROR_REDUCER) {
+    console.warn(ERROR_REDUCER, state)
     return {
       ...state,
       getBlogList: {

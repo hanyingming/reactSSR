@@ -22,17 +22,15 @@ export const delay = () => new Promise(resolve => setTimeout(() => {
     data: {},
     message: '请求异常',
   })
-}, 10000))
+}, 2000))
 
-export function getData(dispatch, getState) {
-  // const state = getState();
-  console.warn('state:', getState)
-  dispatch(loadingAction);
+export const getData = (dispatch) => {
+  dispatch(loadingAction());
   delay().then((res) => {
     console.warn('res:', res)
-    dispatch(successAction);
+    dispatch(successAction(res));
   }).catch((err) => {
     console.warn('err:', err)
-    dispatch(errorAction);
+    dispatch(errorAction());
   });
 }
