@@ -1,17 +1,21 @@
 import React from 'react'
 import ReactDom from 'react-dom'
+import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
 import { BrowserRouter } from 'react-router-dom'
-import App from './view/App'
 
+import store from './store'
+import App from './view/App'
 
 const render = (Component) => {
   ReactDom.hydrate(
-    <AppContainer>
-      <BrowserRouter>
-        <Component />
-      </BrowserRouter>
-    </AppContainer>,
+    <Provider store={store}>
+      <AppContainer>
+        <BrowserRouter>
+          <Component />
+        </BrowserRouter>
+      </AppContainer>
+    </Provider>,
     document.getElementById('root'),
   );
 };
