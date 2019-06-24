@@ -1,14 +1,14 @@
 import React from 'react'
-import { StaticRouter } from 'react-router-dom'
+import { StaticRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import store from './store'
+// import store from './store'
 import App from './view/App'
 
-export default () => (
+export default (store, routerContext, url) => (
   <Provider store={store}>
-    <StaticRouter>
+    <Router context={routerContext} location={url}>
       <App />
-    </StaticRouter>
+    </Router>
   </Provider>
 )

@@ -4,7 +4,8 @@ const MemoryFS = require('memory-fs') // 内存
 const ReactSSR = require('react-dom/server') // 服务器端渲染
 const axios = require('axios')
 const proxy = require('http-proxy-middleware') // http代理中间件
-
+// const asyncBootstrap = require('react-async-bootstrapper')
+const reactTreeWalker = require('react-tree-walker')
 // 服务器端webpack 配置；用于动态初始化webpack
 const serverConfig = require('../build/webpack.server.js')
 
@@ -17,6 +18,22 @@ const getTemplate = (config) => {
       })
       .catch(reject)
   })
+}
+
+// 搜集所有请求
+const asyncFetchData = async (App) => {
+  console.warn('async', App)
+  let promises = []
+  const visitor = (element, instance) => {
+    console.warn('element:', element)
+    console.warn('instance:', instance)
+    if (instance && instance.fetchData && typeof instance.fetchData === 'function') {
+      promises.push(instance.fetchData())
+    }
+  }
+  await reactTreeWalker(App, visitor)
+  console.warn('promise', promises)
+  return Promise.all(promises)
 }
 
 // 通过module到处的打包数据
@@ -53,10 +70,32 @@ module.exports = function (app, config) {
 
   app.get('*', function (req, res) {
     console.warn(333)
-    getTemplate(config).then(template => {
-      // 获取渲染模板后整合渲染数据，返回给客户端
-      const appString = ReactSSR.renderToString(serverBundle)
-      res.send(template.replace('<!-- app -->', appString))
-    })
+    if (serverBundle) {
+      getTemplate(config).then(template => {
+        // 获取store
+        const store = require('../client/store').default
+        const routerContext = {}
+        console.warn('store:', store)
+        const app = serverBundle(store, routerContext, req.url)
+        // asyncBootstrap().then(() => {
+
+        // })
+        console.warn(4444)
+        // 监听处理路由302重定向问题
+        // if (routerContext.url) { // 重定向
+        //   res.status(302).setHeader('Location', routerContext.url)
+        //   res.end()
+        //   return
+        // }
+        // 在渲染组建前卡一下，等待所有请求结束
+        asyncFetchData(app).then(() => {
+          // 获取渲染模板后整合渲染数据，返回给客户端
+          const appString = ReactSSR.renderToString(app)
+          res.send(template.replace('<!-- app -->', appString))
+        })
+      })
+    } else {
+      res.end()
+    }
   })
 }
