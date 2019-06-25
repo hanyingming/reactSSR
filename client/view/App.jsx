@@ -18,7 +18,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    return (
+    return [
       <div style={{ width: '100%', height: '100vh' }}>
         <div style={{ width: '100%', height: '60px' }}>
           <Header />
@@ -27,14 +27,12 @@ export default class App extends React.Component {
           <div style={{ width: '200px' }}>
             <SideMenu />
           </div>
-          <div>
-            <AppRouter />
-          </div>
         </div>
         <div style={{ height: '80px' }}>
           <Footer />
         </div>
-      </div>
-    );
+      </div>,
+      <AppRouter />,
+    ]
   }
 }

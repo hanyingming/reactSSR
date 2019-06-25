@@ -5,7 +5,11 @@ const ReactSSR = require('react-dom/server') // 服务器端渲染
 const axios = require('axios')
 const proxy = require('http-proxy-middleware') // http代理中间件
 // const asyncBootstrap = require('react-async-bootstrapper')
-const reactTreeWalker = require('react-tree-walker')
+// const reactTreeWalker = require('react-tree-walker')
+
+const { matchRoutes } = require('react-router-config')
+const route = require('../client/config/serverRouter').default
+
 // 服务器端webpack 配置；用于动态初始化webpack
 const serverConfig = require('../build/webpack.server.js')
 
@@ -21,18 +25,31 @@ const getTemplate = (config) => {
 }
 
 // 搜集所有请求
-const asyncFetchData = async (App) => {
-  console.warn('async', App)
+const asyncFetchData = async (store, url) => {
+  console.warn('async', store)
+  // let promises = []
+  // const visitor = (element, instance) => {
+  //   // console.warn('element:', element)
+  //   // console.warn('instance:', instance)
+  //   if (instance && instance.fetchData && typeof instance.fetchData === 'function') {
+  //     promises.push(instance.fetchData())
+  //   }
+  // }
+  // await reactTreeWalker(store, visitor)
+  // console.warn('promise', promises)
+  // return Promise.all(promises)
+  const matchedRoutes = matchRoutes(route, url)
+  console.warn('matchedRoutes', matchedRoutes)
   let promises = []
-  const visitor = (element, instance) => {
-    console.warn('element:', element)
-    console.warn('instance:', instance)
-    if (instance && instance.fetchData && typeof instance.fetchData === 'function') {
-      promises.push(instance.fetchData())
+  matchedRoutes.forEach(item => {
+    if (item.route.fetchData) {
+      const promise = new Promise(resolve => {
+        item.route.fetchData(store).then(resolve).catch(resolve)
+      })
+      promises.push(promise)
     }
-  }
-  await reactTreeWalker(App, visitor)
-  console.warn('promise', promises)
+  })
+  console.warn('promises', promises)
   return Promise.all(promises)
 }
 
@@ -88,7 +105,7 @@ module.exports = function (app, config) {
         //   return
         // }
         // 在渲染组建前卡一下，等待所有请求结束
-        asyncFetchData(app).then(() => {
+        asyncFetchData(store, req.url).then(() => {
           // 获取渲染模板后整合渲染数据，返回给客户端
           const appString = ReactSSR.renderToString(app)
           res.send(template.replace('<!-- app -->', appString))

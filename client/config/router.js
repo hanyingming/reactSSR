@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import loadable from 'loadable-components'
 
 import Loading from '../components/loading'
@@ -13,8 +13,8 @@ const BlogDetail = loadable(() => import('../view/blogDetail'), {
 })
 
 export default () => (
-  <div>
+  <Switch>
     <Route path="/" exact component={BlogList} key="blogList" />
     <Route path="/detail" component={BlogDetail} key="detail" />
-  </div>
+  </Switch>
 )
