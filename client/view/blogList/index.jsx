@@ -7,11 +7,25 @@ import { connect } from 'react-redux'
 import { getData } from '../../store/action'
 
 class BlogList extends React.Component {
+  static fetchData() {
+    console.warn('fetchData')
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        this.counter = 1
+        resolve(true)
+      })
+    })
+  }
+
   constructor(props) {
     super(props)
     this.state = {
       counter: 0,
     }
+  }
+
+  componentWillMount() {
+    console.warn('willMount')
   }
 
   componentDidMount() {
@@ -23,16 +37,6 @@ class BlogList extends React.Component {
 
   bootstrap() {
     console.warn('bootStrap')
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        this.counter = 1
-        resolve(true)
-      })
-    })
-  }
-
-  fetchData() {
-    console.warn('fetchData')
     return new Promise((resolve) => {
       setTimeout(() => {
         this.counter = 1

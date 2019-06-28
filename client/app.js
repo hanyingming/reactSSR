@@ -3,21 +3,24 @@ import ReactDom from 'react-dom'
 import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
 import { BrowserRouter } from 'react-router-dom'
+import { loadableReady } from '@loadable/component'
 
 import store from './store'
 import App from './view/App'
 
 const render = (Component) => {
-  ReactDom.hydrate(
-    <Provider store={store}>
-      <AppContainer>
-        <BrowserRouter>
-          <Component />
-        </BrowserRouter>
-      </AppContainer>
-    </Provider>,
-    document.getElementById('root'),
-  );
+  loadableReady(() => {
+    ReactDom.hydrate(
+      <Provider store={store}>
+        <AppContainer>
+          <BrowserRouter>
+            <Component />
+          </BrowserRouter>
+        </AppContainer>
+      </Provider>,
+      document.getElementById('root'),
+    )
+  })
 };
 
 render(App);

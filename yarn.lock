@@ -692,7 +692,7 @@
     pirates "^4.0.0"
     source-map-support "^0.5.9"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.5":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.4", "@babel/runtime@^7.4.5":
   version "7.4.5"
   resolved "https://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
   integrity sha1-WCu1MfX53GfS/LaCl5iU914lPxI=
@@ -731,6 +731,35 @@
     esutils "^2.0.2"
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
+
+"@loadable/babel-plugin@^5.10.0":
+  version "5.10.0"
+  resolved "https://registry.npm.taobao.org/@loadable/babel-plugin/download/@loadable/babel-plugin-5.10.0.tgz#9d2b83649c910404214ae0da4c4a84a2a3f583ed"
+  integrity sha1-nSuDZJyRBAQhSuDaTEqEoqP1g+0=
+  dependencies:
+    "@babel/plugin-syntax-dynamic-import" "^7.2.0"
+
+"@loadable/component@^5.10.1":
+  version "5.10.1"
+  resolved "https://registry.npm.taobao.org/@loadable/component/download/@loadable/component-5.10.1.tgz#09613e46d409ffacb3b4403658ed90adbc01ba24"
+  integrity sha1-CWE+RtQJ/6yztEA2WO2QrbwBuiQ=
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+    hoist-non-react-statics "^3.3.0"
+
+"@loadable/server@^5.9.0":
+  version "5.9.0"
+  resolved "https://registry.npm.taobao.org/@loadable/server/download/@loadable/server-5.9.0.tgz#ca40a7d5317a5a211ef9ac2278810c8671fb80f4"
+  integrity sha1-ykCn1TF6WiEe+awieIEMhnH7gPQ=
+  dependencies:
+    lodash "^4.17.11"
+
+"@loadable/webpack-plugin@^5.7.1":
+  version "5.7.1"
+  resolved "https://registry.npm.taobao.org/@loadable/webpack-plugin/download/@loadable/webpack-plugin-5.7.1.tgz#9fe4b19c347eaa72f8ff366ae9a9d2b724f86124"
+  integrity sha1-n+SxnDR+qnL4/zZq6anStyT4YSQ=
+  dependencies:
+    mkdirp "^0.5.1"
 
 "@types/events@*":
   version "3.0.0"
@@ -1173,11 +1202,6 @@ babel-loader@^8.0.0:
     loader-utils "^1.0.2"
     mkdirp "^0.5.1"
     pify "^4.0.1"
-
-babel-plugin-syntax-dynamic-import@^6.18.0:
-  version "6.18.0"
-  resolved "https://registry.npm.taobao.org/babel-plugin-syntax-dynamic-import/download/babel-plugin-syntax-dynamic-import-6.18.0.tgz#8d6a26229c83745a9982a441051572caa179b1da"
-  integrity sha1-jWomIpyDdFqZgqRBBRVyyqF5sdo=
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -3112,7 +3136,7 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@^3.0.1, hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0:
+hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0:
   version "3.3.0"
   resolved "https://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
   integrity sha1-sJF48BIhhPuVrPUl2q7LTY9FlYs=
@@ -3777,14 +3801,6 @@ load-json-file@^2.0.0:
     parse-json "^2.2.0"
     pify "^2.0.0"
     strip-bom "^3.0.0"
-
-loadable-components@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.npm.taobao.org/loadable-components/download/loadable-components-2.2.3.tgz#6fd1e02cc3716f6dbbd885a90d2bb36bf19cd7e1"
-  integrity sha1-b9HgLMNxb2272IWpDSuza/Gc1+E=
-  dependencies:
-    babel-plugin-syntax-dynamic-import "^6.18.0"
-    hoist-non-react-statics "^3.0.1"
 
 loader-fs-cache@^1.0.0:
   version "1.0.2"
@@ -4855,7 +4871,7 @@ promise-inflight@^1.0.1:
   resolved "https://registry.npm.taobao.org/promise-inflight/download/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
-prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.npm.taobao.org/prop-types/download/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha1-UsQedbjIfnK52TYOAga5ncv/psU=
@@ -4999,14 +5015,12 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-async-bootstrapper@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.npm.taobao.org/react-async-bootstrapper/download/react-async-bootstrapper-2.1.1.tgz#8bc4115108e2ce6ba5771850a6814980599e09f2"
-  integrity sha1-i8QRUQjizmuldxhQpoFJgFmeCfI=
-  dependencies:
-    react-tree-walker "^4.2.0"
+react-dom-walker@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/react-dom-walker/download/react-dom-walker-1.0.1.tgz#a74953e37027c350cbf79753b496923fdbae8010"
+  integrity sha1-p0lT43Anw1DL95dTtJaSP9uugBA=
 
-react-dom@^16.8.6:
+react-dom@^16.7.0:
   version "16.8.6"
   resolved "https://registry.npm.taobao.org/react-dom/download/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
   integrity sha1-cdYwP2MeiwCX9WFl72CPBR/24Q8=
@@ -5041,6 +5055,13 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
 
+react-loadable@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.npm.taobao.org/react-loadable/download/react-loadable-5.5.0.tgz#582251679d3da86c32aae2c8e689c59f1196d8c4"
+  integrity sha1-WCJRZ509qGwyquLI5onFnxGW2MQ=
+  dependencies:
+    prop-types "^15.5.0"
+
 react-redux@^7.1.0:
   version "7.1.0"
   resolved "https://registry.npm.taobao.org/react-redux/download/react-redux-7.1.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-redux%2Fdownload%2Freact-redux-7.1.0.tgz#72af7cf490a74acdc516ea9c1dd80e25af9ea0b2"
@@ -5073,9 +5094,9 @@ react-router-dom@^5.0.1:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-router@5.0.1:
+react-router@5.0.1, react-router@^5.0.1:
   version "5.0.1"
-  resolved "https://registry.npm.taobao.org/react-router/download/react-router-5.0.1.tgz#04ee77df1d1ab6cb8939f9f01ad5702dbadb8b0f"
+  resolved "https://registry.npm.taobao.org/react-router/download/react-router-5.0.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-router%2Fdownload%2Freact-router-5.0.1.tgz#04ee77df1d1ab6cb8939f9f01ad5702dbadb8b0f"
   integrity sha1-BO533x0atsuJOfnwGtVwLbrbiw8=
   dependencies:
     "@babel/runtime" "^7.1.2"
@@ -5089,12 +5110,12 @@ react-router@5.0.1:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-tree-walker@^4.2.0, react-tree-walker@^4.3.0:
+react-tree-walker@^4.3.0:
   version "4.3.0"
   resolved "https://registry.npm.taobao.org/react-tree-walker/download/react-tree-walker-4.3.0.tgz#b7cae498cebb490281e9e99a01bdb9c6b4926cd3"
   integrity sha1-t8rkmM67SQKB6emaAb25xrSSbNM=
 
-react@^16.8.6:
+react@^16.7.0:
   version "16.8.6"
   resolved "https://registry.npm.taobao.org/react/download/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
   integrity sha1-rWw6lhT9Ok6e9REX9U2IjaAfK74=
@@ -5151,6 +5172,11 @@ readdirp@^2.2.1:
     graceful-fs "^4.1.11"
     micromatch "^3.1.10"
     readable-stream "^2.0.2"
+
+redux-connect@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.npm.taobao.org/redux-connect/download/redux-connect-9.0.0.tgz#071f4b879dcd4c92b30bba27666b780cd25a0494"
+  integrity sha1-Bx9Lh53NTJKzC7onZmt4DNJaBJQ=
 
 redux-devtools-extension@^2.13.8:
   version "2.13.8"

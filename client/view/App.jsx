@@ -1,8 +1,10 @@
 import React from 'react';
-import AppRouter from '../config/router'
+import AppRouter, { routes } from '../config/router'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import SideMenu from '../components/sideMenu'
+
+export { routes }
 
 export default class App extends React.Component {
   // handleListener = () => {
@@ -18,7 +20,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    return [
+    return (
       <div style={{ width: '100%', height: '100vh' }}>
         <div style={{ width: '100%', height: '60px' }}>
           <Header />
@@ -27,12 +29,14 @@ export default class App extends React.Component {
           <div style={{ width: '200px' }}>
             <SideMenu />
           </div>
+          <div>
+            <AppRouter />
+          </div>
         </div>
         <div style={{ height: '80px' }}>
           <Footer />
         </div>
-      </div>,
-      <AppRouter />,
-    ]
+      </div>
+    )
   }
 }

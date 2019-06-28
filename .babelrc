@@ -5,6 +5,7 @@
   ],
   "plugins": [
     "react-hot-loader/babel",
+    "@loadable/babel-plugin",
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-transform-runtime"
     // "@babel/proposal-class-properties"

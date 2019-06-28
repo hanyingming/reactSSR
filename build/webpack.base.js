@@ -1,4 +1,5 @@
 const path = require('path')
+const LoadablePlugin = require('@loadable/webpack-plugin')
 
 const config = {
   mode: 'none',
@@ -33,8 +34,8 @@ const config = {
     //   presets: ['@babel/preset-env', '@babel/preset-react']
     // }
     }]
-  }
-
+  },
+  plugins: [new LoadablePlugin()]
 }
 
 module.exports = config
