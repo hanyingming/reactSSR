@@ -35,7 +35,7 @@ if (!isProd) {
   }
   config.devServer = {
     host: '0.0.0.0',
-    port: '8000',
+    port: '7000',
     hot: true,
     contentBase: path.join(__dirname, '../dist'),
     publicPath: '/public/',

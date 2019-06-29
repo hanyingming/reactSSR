@@ -10,7 +10,7 @@ const isDev = process.env.NODE_ENV === 'development'
 const config = {
   host: '127.0.0.1',
   port: 3000,
-  clientPort: 8000,
+  clientPort: 7000,
   publicPath: '/public/'
 }
 

@@ -62,8 +62,8 @@ blogDetail
 BlogList.propTypes = {
   dispatch: PropTypes.func.isRequired,
   getData1: PropTypes.func.isRequired,
-  state: PropTypes.func.isRequired,
-  // state: PropTypes.shape({ getState: PropTypes.func.isRequired }).isRequired,
+  // state: PropTypes.func.isRequired,
+  state: PropTypes.shape({ getBlogList: PropTypes.object.isRequired }).isRequired,
 }
 
 const mapStateToProps = state => ({ state })

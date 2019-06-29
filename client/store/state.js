@@ -1,5 +1,7 @@
 export default {
   getBlogList: {
-    list: [],
+    list: [{
+      title: '你好',
+    }],
   },
 };

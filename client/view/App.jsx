@@ -1,18 +1,26 @@
 import React from 'react';
+// import PropTypes from 'prop-types'
+// import { connect } from 'react-redux'
+
 import AppRouter, { routes } from '../config/router'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import SideMenu from '../components/sideMenu'
 
 export { routes }
-
-export default class App extends React.Component {
+class App extends React.Component {
   // handleListener = () => {
   //   console.warn(33333)
   // }
 
+  constructor(props) {
+    super(props)
+    console.warn('App -> constructor')
+  }
+
   componentWillMount() {
     // console.warn(222);
+    // console.warn(this.props.dispatch)
   }
 
   componentDidMount() {
@@ -40,3 +48,5 @@ export default class App extends React.Component {
     )
   }
 }
+
+export default App

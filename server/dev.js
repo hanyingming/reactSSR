@@ -67,7 +67,6 @@ serverCompiler.watch({}, (err, stats) => {
   serverBundle = m.exports.default
   serverBundle.routes = m.exports.routes
   serverBundle.stores = m.exports.stores
-  console.warn('serverBundle:', serverBundle)
 })
 
 module.exports = function (app, config) {
@@ -77,21 +76,22 @@ module.exports = function (app, config) {
   }))
 
   app.get('*', function (req, res) {
-    console.warn(333)
     if (serverBundle) {
       getTemplate(config).then(template => {
         const routerContext = {}
+        const app = serverBundle(serverBundle.stores, routerContext, req.url)
         preFetchData(serverBundle.routes, serverBundle.stores, req.url)
           .then(() => {
             console.warn('serverBundle.stores:', serverBundle.stores.getState())
             console.warn('preFetchData --> after')
-            const app = serverBundle(serverBundle.stores, routerContext, req.url)
             const appString = ReactSSR.renderToString(app)
+            console.warn('appString:', appString)
             const initialState = `<script> window.context={ INITIAL_STATE: ${JSON.stringify(serverBundle.stores.getState())}} </script>`
             res.send(template.replace('<!-- app -->', appString).replace('<!-- initial-state -->', initialState))
           })
           .catch((err) => {
-            res.send(template.replace('<!-- app -->', JSON.stringify(err)))
+            // res.send(template.replace('<!-- app -->', JSON.stringify(err)))
+            console.warn(err)
             res.end()
           })
         // 获取store
