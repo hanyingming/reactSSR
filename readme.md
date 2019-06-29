@@ -35,26 +35,21 @@ webpack.client.js 配置 js、jsx相关loader： babel-loader。
 创建 webpack.server.js 服务器端配置文件输出服务器端渲染入口文件。
 安装express依赖 启动服务 渲染服务器端入口文件。
 
-### 4. 开发环境页面实时局部刷新
+### 4. 开发环境页面实时局部刷新[HMR + react-hot-loader]
  webpack dev server 更改数据，页面实时刷新
  hot module replacement 更改数据，页面局部刷新
- https://webpack.docschina.org/guides/hot-module-replacement
 
- react-hot-loader: https://github.com/gaearon/react-hot-loader
-
-react-hot-loader(react局部热更新的增强版，依赖hot-module-replacement)
-配置步骤：
-安装 react-hot-loader依赖
+####react-hot-loader(react局部热更新的增强版，依赖hot-module-replacement)
+react-hot-loader 配置步骤：
 1. 配置.babelrc文件 plugins: react-hot-loader/babel
 2. 配置webpack.client.js文件 通过入口文件注入 react-hot-loader/patch; devServer 配置 hot: true
 3. App.js文件中引入react-hot-loader；通过 module.hot判断 热更新
 
-限制：
+react-hot-loader 限制：
 1. React-Hot-Loader would not change the past, only update the present
 2. React-Hot-Loader would not update any object, including component state.
 
 ### 5.服务器端实现热更新
-https://webpack.docschina.org/api/node/#%E5%AE%89%E8%A3%85-installation-
 > 线上环境 express服务通过引入dist目录的服务入口文件server.js 与 html模板文件并进行整合返回给客户端。
 > 开发环境 需要通过axios获取客户端生成的模板文件，express服务器获取需要渲染的内容注入到模板文件的内容区域，返回给客户端。
 开发环境处理过程：
@@ -110,12 +105,16 @@ eslint 常用配置项说明：
 2. 配置路由的代码分离（按需加载）
 
 
-https://github.com/Graceji/react-koa-SSR/blob/master/server/util/server-render.js
-https://blog.csdn.net/sinat_17775997/article/details/83151142
-
-
-
-
-
-
+### 参考链接
+[详解React 服务端渲染方案完美的解决方案](https://m.jb51.net/article/152748.htm)
+[详解React服务端渲染从入门到精通](https://m.jb51.net/article/158625.htm)
+[利用React Router4实现的服务端直出渲染(SSR)](https://m.jb51.net/article/154169.htm)
+[webpack HMR](https://webpack.docschina.org/guides/hot-module-replacement)
+[react-hot-loader](https://github.com/gaearon/react-hot-loader)
+[webpack 动态初始化](https://webpack.docschina.org/api/node/#%E5%AE%89%E8%A3%85-installation-)
+[react-router文档](https://reacttraining.com/react-router/web/example/basic)
+[代码分割](https://blog.csdn.net/sinat_17775997/article/details/83151142)
+[react-routerV3、V4 server render的区别](https://wuxinhua.com/2017/11/20/React-ssr-exploration/)
+[react-koa-SSR参考项目]https://github.com/Graceji/react-koa-SSR/blob
+[react-ssr参看项目](https://github.com/onlyling/react-ssr)
 
