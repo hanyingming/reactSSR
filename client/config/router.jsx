@@ -1,4 +1,5 @@
 import React from 'react'
+import path from 'path'
 // import { Route } from 'react-router-dom'
 import { Switch, Redirect } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
@@ -46,29 +47,22 @@ import loadable from '@loadable/component'
 //   return res.default
 // }))
 
-const loadBlogDetail = loadable(() => import('../view/blogDetail'));
-const loadBlogList = loadable(() => import('../view/blogList'));
-
+const BlogList = loadable(() => import('../view/blogList'))
+const BlogDetail = loadable(() => import('../view/blogDetail'))
 
 export const routes = [
   {
     id: 'blogList',
     path: '/blogList',
     exact: true,
-    component: loadBlogList,
-    // realComponent: blogListComponent[1],
-    fetchData: () => {
-      console.warn('loadBlogDetail', loadBlogList)
-      // loadBlogList.WrappedComponent.fetchData()
-      // require('../view/BlogList').fetchData()
-      // console.warn('route -> fetchData')
-      // console.warn(loadBlogList)
-    },
+    component: BlogList,
+    serverSideRequirePath: path.join(__dirname, '../view/blogList'),
   }, {
     id: 'detail',
     path: '/detail',
     exact: true,
-    component: loadBlogDetail,
+    component: BlogDetail,
+    serverSideRequirePath: path.join(__dirname, '../view/blogDetail'),
   },
 ]
 

@@ -5015,12 +5015,19 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-async-bootstrapper@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npm.taobao.org/react-async-bootstrapper/download/react-async-bootstrapper-2.1.1.tgz#8bc4115108e2ce6ba5771850a6814980599e09f2"
+  integrity sha1-i8QRUQjizmuldxhQpoFJgFmeCfI=
+  dependencies:
+    react-tree-walker "^4.2.0"
+
 react-dom-walker@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/react-dom-walker/download/react-dom-walker-1.0.1.tgz#a74953e37027c350cbf79753b496923fdbae8010"
   integrity sha1-p0lT43Anw1DL95dTtJaSP9uugBA=
 
-react-dom@^16.7.0:
+react-dom@^16.8.6:
   version "16.8.6"
   resolved "https://registry.npm.taobao.org/react-dom/download/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
   integrity sha1-cdYwP2MeiwCX9WFl72CPBR/24Q8=
@@ -5083,7 +5090,7 @@ react-router-config@^5.0.1:
 
 react-router-dom@^5.0.1:
   version "5.0.1"
-  resolved "https://registry.npm.taobao.org/react-router-dom/download/react-router-dom-5.0.1.tgz#ee66f4a5d18b6089c361958e443489d6bab714be"
+  resolved "https://registry.npm.taobao.org/react-router-dom/download/react-router-dom-5.0.1.tgz?cache=0&sync_timestamp=1559689532002&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-router-dom%2Fdownload%2Freact-router-dom-5.0.1.tgz#ee66f4a5d18b6089c361958e443489d6bab714be"
   integrity sha1-7mb0pdGLYInDYZWORDSJ1rq3FL4=
   dependencies:
     "@babel/runtime" "^7.1.2"
@@ -5110,14 +5117,14 @@ react-router@5.0.1, react-router@^5.0.1:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-tree-walker@^4.3.0:
+react-tree-walker@^4.2.0, react-tree-walker@^4.3.0:
   version "4.3.0"
   resolved "https://registry.npm.taobao.org/react-tree-walker/download/react-tree-walker-4.3.0.tgz#b7cae498cebb490281e9e99a01bdb9c6b4926cd3"
   integrity sha1-t8rkmM67SQKB6emaAb25xrSSbNM=
 
-react@^16.7.0:
+react@^16.8.6:
   version "16.8.6"
-  resolved "https://registry.npm.taobao.org/react/download/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
+  resolved "https://registry.npm.taobao.org/react/download/react-16.8.6.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact%2Fdownload%2Freact-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
   integrity sha1-rWw6lhT9Ok6e9REX9U2IjaAfK74=
   dependencies:
     loose-envify "^1.1.0"

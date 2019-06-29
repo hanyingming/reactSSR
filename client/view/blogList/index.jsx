@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import bootstrapper from 'react-async-bootstrapper'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -11,7 +10,6 @@ class BlogList extends React.Component {
     console.warn('fetchData')
     return new Promise((resolve) => {
       setTimeout(() => {
-        this.counter = 1
         resolve(true)
       })
     })
@@ -36,10 +34,10 @@ class BlogList extends React.Component {
   }
 
   bootstrap() {
-    console.warn('bootStrap')
+    console.warn('fetchData')
     return new Promise((resolve) => {
       setTimeout(() => {
-        this.counter = 1
+        this.counter = 3
         resolve(true)
       })
     })
