@@ -6,17 +6,10 @@ import { connect } from 'react-redux'
 import { getData } from '../../store/action'
 
 class BlogList extends React.Component {
-  static fetchData() {
-    console.warn('fetchData')
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(true)
-      })
-    })
-  }
-
   constructor(props) {
     super(props)
+    console.warn('调用constructor')
+    console.warn('blogList:', this.props.state)
     this.state = {
       counter: 0,
     }
@@ -30,26 +23,37 @@ class BlogList extends React.Component {
     // do something here
     console.warn('componetn')
     const { dispatch, getData1 } = this.props;
-    getData1(dispatch);
+    // getData1(dispatch);
+    console.warn('getData1:', getData1, dispatch)
   }
 
-  bootstrap() {
-    console.warn('fetchData')
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        this.counter = 3
-        resolve(true)
-      })
-    })
-  }
+  // bootstrap() {
+  //   console.warn('fetchData')
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       this.counter = 3
+  //       resolve(true)
+  //     })
+  //   })
+  // }
 
   render() {
     const { counter } = this.state
+    const { state } = this.props
+    const { getBlogList } = state
+    const { list } = getBlogList
+    console.warn('list: ', list)
     return (
       <div>
         BlogList
         {counter}
-        <Link to="/detail"> blogDetail </Link>
+        <Link to="/detail">
+          {' '}
+blogDetail
+          {list && list.length > 0 && list[0].title}
+          {' '}
+
+        </Link>
       </div>
     )
   }
@@ -58,7 +62,8 @@ class BlogList extends React.Component {
 BlogList.propTypes = {
   dispatch: PropTypes.func.isRequired,
   getData1: PropTypes.func.isRequired,
-  // store: PropTypes.shape({ getState: PropTypes.func.isRequired }).isRequired,
+  state: PropTypes.func.isRequired,
+  // state: PropTypes.shape({ getState: PropTypes.func.isRequired }).isRequired,
 }
 
 const mapStateToProps = state => ({ state })

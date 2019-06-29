@@ -1,16 +1,16 @@
 import React from 'react'
-import path from 'path'
 // import { Route } from 'react-router-dom'
 import { Switch, Redirect } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import loadable from '@loadable/component'
+import { fetchData } from '../helper'
 // import Loading from '../components/loading'
 
 // import BlogList from '../view/blogList'
 // import BlogDetail from '../view/blogDetail'
 
-// const BlogList = loadable(() => import('../view/blogList'))
-// const BlogDetail = loadable(() => import('../view/blogDetail'))
+const BlogList = loadable(() => import('../view/blogList'))
+const BlogDetail = loadable(() => import('../view/blogDetail'))
 
 // export const routes = [
 //   {
@@ -47,22 +47,28 @@ import loadable from '@loadable/component'
 //   return res.default
 // }))
 
-const BlogList = loadable(() => import('../view/blogList'))
-const BlogDetail = loadable(() => import('../view/blogDetail'))
+// const BlogList = loadable(() => import('../view/blogList'))
+// const BlogDetail = loadable(() => import('../view/blogDetail'))
 
 export const routes = [
   {
-    id: 'blogList',
     path: '/blogList',
     exact: true,
     component: BlogList,
-    serverSideRequirePath: path.join(__dirname, '../view/blogList'),
+    fetchData: (store, location) => {
+      console.warn('store:', store)
+      console.warn('location', location)
+      return fetchData(store.dispatch)
+    },
   }, {
-    id: 'detail',
     path: '/detail',
     exact: true,
     component: BlogDetail,
-    serverSideRequirePath: path.join(__dirname, '../view/blogDetail'),
+    fetchData: (store, location) => {
+      console.warn('store:', store)
+      console.warn('location', location)
+      return fetchData(store.dispatch)
+    },
   },
 ]
 

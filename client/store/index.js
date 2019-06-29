@@ -5,5 +5,8 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import initialState from './state'
 import reducer from './reducer'
 
-export default createStore(reducer, initialState,
+const defaultState = (global && global.context && global.context.INITIAL_STATE)
+  || initialState
+
+export default createStore(reducer, defaultState,
   composeWithDevTools(applyMiddleware(thunk)))

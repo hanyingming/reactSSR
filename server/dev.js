@@ -1,5 +1,4 @@
 const path = require('path')
-const fs = require('fs')
 const webpack = require('webpack')
 const MemoryFS = require('memory-fs') // 内存
 const ReactSSR = require('react-dom/server') // 服务器端渲染
@@ -29,15 +28,14 @@ const getTemplate = (config) => {
 // 预加载请求处理
 const preFetchData = (routes, store, location) => {
   const matchedRoutes = matchRoutes(routes, location)
+  // const promises = matchedRoutes.map(({ route, match }) => {
+  //   return route.component && route.component.fetchData
+  //     ? route.component.fetchData(store, match)
+  //     : Promise.resolve(null)
+  // })
   const promises = matchedRoutes.map(({ route, match }) => {
-    console.warn('route:', route)
-    console.warn('path.join(__dirname, route.serverSideRequirePath)0', path.join(__dirname, '../client/', route.serverSideRequirePath))
-    const bundle = fs.readFileSync(path.join(__dirname, '../client/', route.serverSideRequirePath + '/index.jsx'), 'utf-8')
-    const m = new Module()
-    m._compile(bundle, 'blogList.js')
-    console.warn(m)
-    return route.component && route.component.fetchData
-      ? route.component.fetchData(store, match)
+    return route.fetchData
+      ? route.fetchData(store, match)
       : Promise.resolve(null)
   })
   console.warn('promises', promises)
@@ -59,7 +57,6 @@ serverCompiler.watch({}, (err, stats) => {
   stats.warnings.forEach(warn => console.warn(warn))
   console.warn('stats:', Object.keys(stats))
   // console.warn('stats:', stats.modules.filter(item => item.id.includes('./client')))
-
   // 读取最终打包文件的内容
   const bundlePath = path.join(serverConfig.output.path, serverConfig.output.filename)
   const bundle = mfs.readFileSync(bundlePath, 'utf-8')
@@ -83,20 +80,18 @@ module.exports = function (app, config) {
     console.warn(333)
     if (serverBundle) {
       getTemplate(config).then(template => {
-        const app = serverBundle(serverBundle.stores, {}, req.url)
-
-        // console.warn('asyncBootstrap:', asyncBootstrap)
-        // asyncBootstrap(app).then(() => {
-        //   res.end()
-        // })
+        const routerContext = {}
         preFetchData(serverBundle.routes, serverBundle.stores, req.url)
           .then(() => {
-            console.warn(3333)
+            console.warn('serverBundle.stores:', serverBundle.stores.getState())
+            console.warn('preFetchData --> after')
+            const app = serverBundle(serverBundle.stores, routerContext, req.url)
             const appString = ReactSSR.renderToString(app)
-            res.send(template.replace('<!-- app -->', appString))
+            const initialState = `<script> window.context={ INITIAL_STATE: ${JSON.stringify(serverBundle.stores.getState())}} </script>`
+            res.send(template.replace('<!-- app -->', appString).replace('<!-- initial-state -->', initialState))
           })
           .catch((err) => {
-            console.log(err)
+            res.send(template.replace('<!-- app -->', JSON.stringify(err)))
             res.end()
           })
         // 获取store
