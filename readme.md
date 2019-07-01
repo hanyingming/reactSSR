@@ -1,5 +1,5 @@
 
-## 技术栈：webpack + react + react-dom
+## 技术栈：webpack + react + react-domm + react-router-dom
 
 ## 目录/文件说明：
     build // webpack 配置文件目录
@@ -104,6 +104,14 @@ eslint 常用配置项说明：
 1. 在client/view/config 目录创建route.jsx 路由配置文件
 2. 配置路由的代码分离（按需加载）
 
+### 8. react-redux 支持 @connect
+babel >= 7.0
+1. @babel/plugin-proposal-decorators
+2. .babelrc 文件中配置
+"plugins": [
+  ["@babel/plugin-proposal-decorators", { "legacy": true }],
+]
+
 
 ### 参考链接
 [详解React 服务端渲染方案完美的解决方案](https://m.jb51.net/article/152748.htm)
@@ -115,6 +123,9 @@ eslint 常用配置项说明：
 [react-router文档](https://reacttraining.com/react-router/web/example/basic)
 [代码分割](https://blog.csdn.net/sinat_17775997/article/details/83151142)
 [react-routerV3、V4 server render的区别](https://wuxinhua.com/2017/11/20/React-ssr-exploration/)
+[react-redux支持@connect](https://blog.csdn.net/qq_26586219/article/details/85991776)
+
+
 [react-koa-SSR参考项目]https://github.com/Graceji/react-koa-SSR/blob
 [react-ssr参看项目](https://github.com/onlyling/react-ssr)
 

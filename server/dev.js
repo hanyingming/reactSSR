@@ -33,11 +33,12 @@ const preFetchData = (routes, store, location) => {
   //     ? route.component.fetchData(store, match)
   //     : Promise.resolve(null)
   // })
-  const promises = matchedRoutes.map(({ route, match }) => {
-    return route.fetchData
-      ? route.fetchData(store, match)
-      : Promise.resolve(null)
-  })
+  let promises = []
+  // const promises = matchedRoutes.map(({ route, match }) => {
+  //   return route.fetchData
+  //     ? route.fetchData(store, match)
+  //     : Promise.resolve(null)
+  // })
   console.warn('promises', promises)
   return Promise.all(promises)
 }

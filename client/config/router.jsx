@@ -2,15 +2,15 @@ import React from 'react'
 // import { Route } from 'react-router-dom'
 import { Switch, Redirect } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
-import loadable from '@loadable/component'
+// import loadable from '@loadable/component'
 import { fetchData } from '../helper'
 // import Loading from '../components/loading'
 
-// import BlogList from '../view/blogList'
-// import BlogDetail from '../view/blogDetail'
+import BlogList from '../view/blogList'
+import BlogDetail from '../view/blogDetail'
 
-const BlogList = loadable(() => import('../view/blogList'))
-const BlogDetail = loadable(() => import('../view/blogDetail'))
+// const BlogList = loadable(() => import('../view/blogList'))
+// const BlogDetail = loadable(() => import('../view/blogDetail'))
 
 // export const routes = [
 //   {
