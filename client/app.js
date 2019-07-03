@@ -4,21 +4,36 @@ import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
 import { BrowserRouter } from 'react-router-dom'
 // import { loadableReady } from '@loadable/component'
+import Loadable from 'react-loadable'
+import { init } from '@rematch/core'
 
-import store from './store'
+// import store from './store'
 import App from './view/App'
+import * as models from './model'
+
+console.warn('models:', models)
+
+const defaultState = (global && global.context && global.context.INITIAL_STATE)
+  || {}
+
+const Store = init({
+  models,
+  redux: defaultState,
+})
 
 const render = (Component) => {
-  ReactDom.hydrate(
-    <Provider store={store}>
-      <AppContainer>
-        <BrowserRouter>
-          <Component />
-        </BrowserRouter>
-      </AppContainer>
-    </Provider>,
-    document.getElementById('root'),
-  )
+  Loadable.preloadReady().then(() => {
+    ReactDom.hydrate(
+      <Provider store={Store}>
+        <AppContainer>
+          <BrowserRouter>
+            <Component />
+          </BrowserRouter>
+        </AppContainer>
+      </Provider>,
+      document.getElementById('root'),
+    )
+  })
 };
 
 render(App);

@@ -4,18 +4,18 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 // import { getData } from '../../store/action'
-// @connect(state => ({
-//   getBlogList: state.getBlogList,
-// }))
+@connect(state => ({
+  getBlogList: state.getBlogList,
+}))
 class BlogList extends React.Component {
-  constructor(props) {
-    super(props)
-    // do something here
-    // console.warn(Object.keys(this.props))
-    // this.state = {
-    //   counter: 0,
-    // }
-  }
+  // constructor(props) {
+  //   super(props)
+  //   // do something here
+  //   // console.warn(Object.keys(this.props))
+  //   // this.state = {
+  //   //   counter: 0,
+  //   // }
+  // }
 
   componentWillMount() {
     console.warn('willMount')
@@ -48,7 +48,7 @@ class BlogList extends React.Component {
     console.warn('getBlogList:', getBlogList)
     return (
       <div>
-        BlogList b 123fetchData123qw1
+        BlogList kk
         <Link to="/detail">
 blogDetail
         </Link>

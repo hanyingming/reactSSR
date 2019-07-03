@@ -9,6 +9,17 @@ const config = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          name: "commons",
+          chunks: "initial",
+          minChunks: 2
+        }
+      }
+    }
+  },
   module: {
     rules: [{
       enforce: 'pre',
@@ -32,7 +43,7 @@ const config = {
     // options: {
     //   presets: ['@babel/preset-env', '@babel/preset-react']
     // }
-    }]
+    }],
   }
 }
 

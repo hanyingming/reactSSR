@@ -5,6 +5,7 @@ const path = require('path')
 const favicon = require('serve-favicon')
 const devServer = require('./dev')
 const prodServer = require('./prod')
+const Loadable = require('react-loadable')
 
 const isDev = process.env.NODE_ENV === 'development'
 const config = {
@@ -25,6 +26,8 @@ if (!isDev) { // 生产环境
   devServer(app, config)
 }
 
-app.listen(config.port, function () {
-  console.log(`server is listening on ${config.port}`)
+Loadable.preloadAll().then(() => {
+  app.listen(config.port, function () {
+    console.log(`server is listening on ${config.port}`)
+  })
 })

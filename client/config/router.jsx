@@ -3,11 +3,12 @@ import React from 'react'
 import { Switch, Redirect } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 // import loadable from '@loadable/component'
+import Loadable from 'react-loadable';
 import { fetchData } from '../helper'
-// import Loading from '../components/loading'
+import Loading from '../components/loading'
 
-import BlogList from '../view/blogList'
-import BlogDetail from '../view/blogDetail'
+// import BlogList from '../view/blogList'
+// import BlogDetail from '../view/blogDetail'
 
 // const BlogList = loadable(() => import('../view/blogList'))
 // const BlogDetail = loadable(() => import('../view/blogDetail'))
@@ -24,14 +25,18 @@ import BlogDetail from '../view/blogDetail'
 //   },
 // ]
 
-// const loadBlogList = loadable({
-//   loader: () => import('../view/blogList'),
-//   loading: Loading,
-// })
-// const loadBlogDetail = loadable({
-//   loader: () => import('../view/blogDetail'),
-//   loading: Loading,
-// });
+const BlogList = Loadable({
+  loader: () => import('../view/blogList'),
+  loading: Loading,
+  modules: ['../view/blogList'],
+  webpack: () => [require.resolveWeak('../view/blogList')],
+})
+const BlogDetail = Loadable({
+  loader: () => import('../view/blogDetail'),
+  loading: Loading,
+  modules: ['../view/blogDetail'],
+  webpack: () => [require.resolveWeak('../view/blogDetail')],
+});
 // const blogListComponent = () =>
 // import('../view/blogList').then(res => [res, res.default.fetchData])
 

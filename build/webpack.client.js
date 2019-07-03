@@ -14,6 +14,7 @@ const config = webpackMerge(configBase, {
   },
   output: {
     filename: '[name].min.js'
+    // chunkFilename: '[name].client.chunk.js',
   },
   plugins: [
     new HtmlWebpackPlugin({
