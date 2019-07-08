@@ -25,17 +25,26 @@ import Loading from '../components/loading'
 //   },
 // ]
 
+// const BlogList = Loadable({
+//   loader: () => import('../view/blogList/index.jsx'),
+//   loading: Loading,
+//   modules: ['../view/blogList/index.jsx'],
+//   webpack: () => [require.resolveWeak('../view/blogList/index.jsx')],
+// })
+// const BlogDetail = Loadable({
+//   loader: () => import('../view/blogDetail/index.jsx'),
+//   loading: Loading,
+//   modules: ['../view/blogDetail/index.jsx'],
+//   webpack: () => [require.resolveWeak('../view/blogDetail/index.jsx')],
+// });
+
 const BlogList = Loadable({
   loader: () => import('../view/blogList'),
   loading: Loading,
-  modules: ['../view/blogList'],
-  webpack: () => [require.resolveWeak('../view/blogList')],
 })
 const BlogDetail = Loadable({
   loader: () => import('../view/blogDetail'),
   loading: Loading,
-  modules: ['../view/blogDetail'],
-  webpack: () => [require.resolveWeak('../view/blogDetail')],
 });
 // const blogListComponent = () =>
 // import('../view/blogList').then(res => [res, res.default.fetchData])

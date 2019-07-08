@@ -12,7 +12,6 @@ import * as models from './model'
 export default (routerContext, url, modules) => {
   const Store = init({
     models,
-    redux: {},
   })
   return (
     <Loadable.Capture report={moduleName => modules.push(moduleName)}>

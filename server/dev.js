@@ -64,8 +64,8 @@ const Module = module.constructor
 // 动态创建webpack
 const serverCompiler = webpack(serverConfig)
 // 将打包文件输出到内存中
-// const mfs = new MemoryFS()
-// serverCompiler.outputFileSystem = mfs
+const mfs = new MemoryFS()
+serverCompiler.outputFileSystem = mfs
 // 监听webpack 打包过程
 serverCompiler.watch({}, (err, stats) => {
   spinner.stop()
@@ -88,11 +88,20 @@ serverCompiler.watch({}, (err, stats) => {
   // console.warn('stats:', stats.modules.filter(item => item.id.includes('./client')))
   // 读取最终打包文件的内容
   const bundlePath = path.join(serverConfig.output.path, serverConfig.output.filename)
-  const bundle = fs.readFileSync(bundlePath, 'utf-8')
+  const bundle = mfs.readFileSync(bundlePath, 'utf-8')
+  // const reactLoadableJson = mfs.readFileSync(path.join(serverConfig.output.path, 'react-loadable.json'), 'utf-8')
 
   // 创建Module对象 将数据动态挂在到模块上
   const m = new Module()
+  // m._load(path.join(serverConfig.output.path, serverConfig.output.filename), {}, false)
+  console.warn(m._load)
   m._compile(bundle, 'server.js')
+
+  m.paths = [
+    path.join(serverConfig.output.path, '')
+  ]
+  console.warn('_m:', m)
+  // console.warn('_m:', reactLoadableJson)
   serverBundle = m.exports.default
   serverBundle.routes = m.exports.routes
   serverBundle.stores = m.exports.stores

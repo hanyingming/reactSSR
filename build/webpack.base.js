@@ -13,8 +13,8 @@ const config = {
     splitChunks: {
       cacheGroups: {
         commons: {
-          name: "commons",
-          chunks: "initial",
+          name: 'commons',
+          chunks: 'initial',
           minChunks: 2
         }
       }
@@ -43,7 +43,7 @@ const config = {
     // options: {
     //   presets: ['@babel/preset-env', '@babel/preset-react']
     // }
-    }],
+    }]
   }
 }
 

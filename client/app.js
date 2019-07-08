@@ -11,8 +11,6 @@ import { init } from '@rematch/core'
 import App from './view/App'
 import * as models from './model'
 
-console.warn('models:', models)
-
 const defaultState = (global && global.context && global.context.INITIAL_STATE)
   || {}
 
@@ -36,7 +34,8 @@ const render = (Component) => {
   })
 };
 
-render(App);
+render(App)
+
 // 局部刷新  HMR
 if (module.hot) {
   module.hot.accept('./view/App', () => {

@@ -33,11 +33,14 @@ module.exports = function (app) {
 
   // 渲染服务器端入口文件
   app.get('*', function (req, res) {
+    console.warn('serverEntry:', serverEntry)
     const routerContext = {}
     preFetchData(serverEntry.routes, serverEntry.stores, req.url)
       .then(() => {
         console.warn('preFetchData --> after')
-        const app = serverEntry.default(serverEntry.stores, routerContext, req.url)
+        const modules = []
+        const app = serverEntry.default(routerContext, req.url, modules)
+        console.warn('modules:', modules)
         // 读入服务器端入口文件数据
         const appString = ReactSSR.renderToString(app)
         // 渲染服务器端数据到网页文件后，返回给客户端

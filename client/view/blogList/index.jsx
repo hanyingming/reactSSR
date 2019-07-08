@@ -18,7 +18,7 @@ class BlogList extends React.Component {
   // }
 
   componentWillMount() {
-    console.warn('willMount')
+    console.warn('BlogList -> willMount')
   }
 
   componentDidMount() {
